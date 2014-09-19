@@ -35,29 +35,24 @@
 #
 # Copyright 2014 Your name here, unless otherwise noted.
 #
-class mtn-guestbookapp {
+class mtn-guestbookapp (
+	$deploydir = '',
+	$application = 'http://www.cumulogic.com/download/Apps/guestbookapp.zip') {
 
-	class { 'jboss': 
-    install  => 'source',
-    version  => '7',
-    require  => package['unzip']
-  }
-
-  #include guestbookapp::deploy
+	#include guestbookapp::deploy
   #download app
   wget::fetch { 'download_guestbook_app':
-    source      => 'http://www.cumulogic.com/download/Apps/guestbookapp.zip',
+    source      => $application,
     destination => '/tmp/guestbookapp.zip',
     timeout     => 0,
     verbose     => true
   }
   #unzip and deploy app
   exec { 'unzipp_app':
-    cwd     => '/opt/jboss/standalone/deployments/',
+    cwd     => $deploydir,
     command => 'unzip -o /tmp/guestbookapp.zip',
     path    => ["/usr/bin", "/usr/sbin"],
     user    => 'jboss'
-    #require  => wget::fetch['download_guestbook_app']
   }
 
   #include guestbookapp::config
@@ -66,15 +61,11 @@ class mtn-guestbookapp {
     user     => 'demo',
     password => 'demodemo',
     host     => 'localhost',
+    sql			 => '#{$deploydir}/guestbookapp/guestbookmysqldump.sql'
   }
-  #exec { 'create_table':
-  #  cwd     => '/opt/jboss/standalone/deployments/guestbookapp',
-  #  command => 'mysql -u demo -pdemodemo < guestbookmysqldump.sql',
-  #  path    => ["/usr/bin", "/usr/sbin"]
-  #}
   #nginx virtual host
-  nginx::resource::vhost { 'puppet':
-    proxy => 'http://localhost:8080/guestbookapp/',
+  nginx::resource::vhost { 'guestbookapp':
+    proxy => 'http://localhost:8080/',
   }
   #jboss connector
 }
