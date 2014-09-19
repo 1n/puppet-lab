@@ -1,0 +1,32 @@
+{
+  "name": "example42-zip",
+  "version": "2.0.13",
+  "summary": "Puppet module for zip",
+  "author": "Alessandro Franceschi",
+  "description": "This module installs and manages zip. Check README for details.",
+  "dependencies": [
+    {
+      "name": "example42/puppi",
+      "version_requirement": ">= 2.0.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "LICENSE": "a300b604c66de62cf6e923cca89c9d83",
+    "Modulefile": "129e5a324e0f61626b656d560f24da45",
+    "README.md": "7546f1223e68dbbc4e9422b5de7a78d2",
+    "Rakefile": "e90d68823ff237c89224eb139f8926ad",
+    "manifests/init.pp": "204d365af26361d5f28f185b0f85083a",
+    "manifests/params.pp": "73eb026c9402903e1976d43ff1e31a8f",
+    "manifests/spec.pp": "a553cd63ff7e82f665b4516025bec171",
+    "spec/classes/package42_spec.rb": "09075751ef0ef3b17d72c4ed9ea02de4",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "tests/absent.pp": "d8cf72bcd79981d6324c27b3ebf78040",
+    "tests/init.pp": "f283b99475565dc8b49834616bca0700"
+  },
+  "source": "https://github.com/example42/puppet-zip",
+  "project_page": "http://www.example42.com",
+  "license": "Apache2"
+}

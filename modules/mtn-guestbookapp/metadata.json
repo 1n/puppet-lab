@@ -1,0 +1,14 @@
+{
+  "name": "mtn-guestbookapp",
+  "version": "0.1.0",
+  "author": "mtn",
+  "summary": "Configures nginx, jboss and mysql to work with http://www.cumulogic.com/download/Apps/guestbookapp.zip and deploys this app.",
+  "license": "Apache 2.0",
+  "source": "",
+  "issues_url": null,
+  "project_page": null,
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
