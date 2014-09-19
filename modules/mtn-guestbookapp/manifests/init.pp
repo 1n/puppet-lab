@@ -65,7 +65,7 @@ class mtn-guestbookapp (
   }
   #nginx virtual host
   nginx::resource::vhost { 'guestbookapp':
-    proxy => 'http://localhost:8080/',
+    proxy => 'http://localhost:8080/guestbookapp',
   }
   #jboss connector
 }
