@@ -61,11 +61,19 @@ class mtn-guestbookapp (
     user     => 'demo',
     password => 'demodemo',
     host     => 'localhost',
-    sql			 => '#{$deploydir}/guestbookapp/guestbookmysqldump.sql'
+    sql			 => "${deploydir}/guestbookapp/guestbookmysqldump.sql"
   }
   #nginx virtual host
   nginx::resource::vhost { 'guestbookapp':
-    proxy => 'http://localhost:8080/guestbookapp',
+    proxy => 'http://localhost:8080/guestbookapp/'
   }
   #jboss connector
+  file { "${deploydir}/guestbookapp/mysql-ds.xml":
+	ensure => file,
+  source => 'puppet:///modules/mtn-guestbookapp/mysql-ds.xml',
+  owner => 'jboss',
+  group => 'jboss'
+  }
 }
+
+#/sybsytem=datasources/data-source="java:jboss/datasources/MySqlDS":add(jndi-name="java:jboss/datasources/MySqlGBDS",pool-name="MySqlPool",driver-name="mysql",connection-url="jdbc:mysql://localhost:3306/guestbook",user-name="demo")
